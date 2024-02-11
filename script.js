@@ -74,8 +74,17 @@ const perguntas = [
     correta: 0,
   },
 ];
-
 // FIM DO ARRAY
+
+// Conjunto para armazenar perguntas corretas
+const corretas = new Set();
+
+// Total de perguntas
+const totalDePerguntas = perguntas.length;
+
+// Elemento HTML para mostrar o número de respostas corretas
+const mostralTotal = document.querySelector("#acertos span");
+mostralTotal.textContent = corretas.size + " de " + totalDePerguntas;
 
 // Seleciona o elemento com o id "quiz" no HTML
 const quiz = document.querySelector("#quiz");
@@ -99,7 +108,28 @@ for (const item of perguntas) {
     // Define o texto da resposta no span dentro do dt
     dt.querySelector("span").textContent = resposta;
 
+    // Define o atributo "name" e o valor do input para identificar a pergunta
+    dt.querySelector("input").setAttribute(
+      "name",
+      "pergunta-" + perguntas.indexOf(item)
+    );
 
+    // Define o valor do input com o índice da resposta atual
+    dt.querySelector("input").value = item.respostas.indexOf(resposta);
+
+    // Define o evento onchange para verificar se a resposta está correta
+    dt.querySelector("input").onchange = (event) => {
+      const estaCorreta = event.target.value == item.correta;
+
+      // Remove a pergunta do conjunto se estiver incorreta
+      corretas.delete(item);
+      // Adiciona a pergunta ao conjunto se estiver correta
+      if (estaCorreta) {
+        corretas.add(item);
+      }
+      // Atualiza o número de respostas corretas exibido no HTML
+      mostralTotal.textContent = corretas.size + " de " + totalDePerguntas;
+    };
 
     // Adiciona a nova opção de resposta ao elemento dl dentro do quizItem
     quizItem.querySelector("dl").appendChild(dt);
