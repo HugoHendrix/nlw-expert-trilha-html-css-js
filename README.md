@@ -32,7 +32,7 @@ Os usuários devem ser capazes de:
 ![Screenshot do Projeto](https://github.com/HugoHendrix/nlw-expert-trilha-html-css-js/blob/main/assets/design-nlw.png?raw=true)
 
 
-## Link do projeto
+## Links
 
 - URL da Solução: [NLW 14 Expert](https://hugohendrix.github.io/nlw-expert-trilha-html-css-js/)
 ## Meu Processo
